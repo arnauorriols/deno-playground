@@ -74,18 +74,20 @@ jobs:
       - name: Create Single JS File (/tmp/index.js)
         run: deno bundle --reload ./index.ts /tmp/index.js
 
-      - name: Copy JS File (./src/index.js)
-        run: cp /tmp/index.js ./src/index.js
+      # - name: Copy JS File (./src/index.js)
+      #   run: cp /tmp/index.js ./src/index.js
 
-      - name: Copy JS File (./index.js)
-        run: cp /tmp/index.js ./index.js
+      # - name: Copy JS File (./index.js)
+      #   run: cp /tmp/index.js ./index.js
 
       - name: Deploy to Deno Deploy
-        run: echo "Deploy currently automated by Deno Deploy; check '.github/workflows/deno-main.yml' for more info"
+        # run: echo "Deploy currently automated by Deno Deploy; check '.github/workflows/deno-main.yml' for more info"
         # !!! Unlink automated deploy before uncommenting below - https://dash.deno.com/projects/fast-rabbit-27/settings
-      #   uses: denoland/deployctl@v1
-      #   with:
-      #     project: fast-rabbit-27 # the name of the project on Deno Deploy
+        uses: denoland/deployctl@v1
+        with:
+          project: arnau-playground
+          entrypoint: 'index.js'
+          root: '/tmp'
           # entrypoint: ./src/index.ts # the entrypoint to deploy relative to `root`
           # entrypoint: ../src/index.ts  'file:///home/runner/work/deno-playground/src/index.ts'
           # entrypoint: src/index.ts     'file:///src/src/index.ts'
