@@ -7,7 +7,6 @@ import { readAllSync } from 'https://deno.land/std@0.140.0/streams/mod.ts';
 import {
 	executeHomePage,
 	executeNotFoundPage,
-	gqlHandler,
 } from './handlers/index.ts';
 import { CountServiceFactory, MongoService } from './services/index.ts';
 
@@ -216,10 +215,6 @@ await waitForDb()
 							status: 200,
 						});
 					}
-					case '/graphql':
-						return mongoSvc.addToPageCount('gql-playground').then(
-							() => gqlHandler(req),
-						);
 					default:
 						return executeNotFoundPage(req);
 				}
